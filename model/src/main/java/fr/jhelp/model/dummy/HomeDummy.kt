@@ -1,18 +1,18 @@
 package fr.jhelp.model.dummy
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import fr.jhelp.model.action.home.HomeAction
 import fr.jhelp.model.data.HomeData
 import fr.jhelp.model.shared.HomeModel
+import fr.jhelp.tool.tasks.observable.Observable
+import fr.jhelp.tool.tasks.observable.ObservableSource
 
-class HomeDummy(homeDataSource: State<HomeData>, private val onAction: (HomeAction) -> Unit = {}) :
-        HomeModel
+class HomeDummy(homeDataSource: Observable<HomeData>, private val onAction: (HomeAction) -> Unit = {}) :
+    HomeModel
 {
     constructor(mainData: HomeData, action: (HomeAction) -> Unit = {}) :
-            this(mutableStateOf(mainData), action)
+            this(ObservableSource<HomeData>(mainData).observable, action)
 
-    override val data: State<HomeData> = homeDataSource
+    override val data: Observable<HomeData> = homeDataSource
 
     override fun action(action: HomeAction)
     {

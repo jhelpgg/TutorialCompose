@@ -19,7 +19,7 @@ class MainComposable
     @Composable
     fun Show(modifier: Modifier = Modifier)
     {
-        val mainData by this.mainModel.data
+        val mainData by this.mainModel.data.composeState
 
         Scaffold(modifier = modifier.testTag(MAIN_CONTAINER)) { innerPadding ->
             val innerModifier = modifier.padding(innerPadding)
