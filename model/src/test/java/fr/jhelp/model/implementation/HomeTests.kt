@@ -1,8 +1,7 @@
 package fr.jhelp.model.implementation
 
 import fr.jhelp.model.action.home.HomeActionChangeInformation
-import fr.jhelp.model.shared.HomeModel
-import fr.jhelp.model.tools.ImmediateDispatcher
+import fr.jhelp.tool.tasks.ImmediateDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert
@@ -15,8 +14,8 @@ class HomeTests
     {
         Dispatchers.setMain(ImmediateDispatcher)
         val homeModel = HomeImplementation()
-        Assert.assertEquals("Information", homeModel.data.value.information)
+        Assert.assertEquals("Information", homeModel.data.composeState.value.information)
         homeModel.action(HomeActionChangeInformation("New"))
-        Assert.assertEquals("New", homeModel.data.value.information)
+        Assert.assertEquals("New", homeModel.data.composeState.value.information)
     }
 }
