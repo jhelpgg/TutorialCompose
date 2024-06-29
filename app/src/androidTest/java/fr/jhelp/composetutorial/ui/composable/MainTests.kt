@@ -1,6 +1,5 @@
 package fr.jhelp.composetutorial.ui.composable
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -16,6 +15,7 @@ import fr.jhelp.model.shared.HomeModel
 import fr.jhelp.model.shared.MainModel
 import fr.jhelp.model.shared.SplashModel
 import fr.jhelp.tool.providers.provideSingle
+import fr.jhelp.tool.tasks.observable.ObservableSource
 import org.junit.BeforeClass
 import org.junit.Rule
 import org.junit.Test
@@ -24,13 +24,13 @@ class MainTests
 {
     companion object
     {
-        val mainDataMutable = mutableStateOf(MainData(screen = Screen.SPLASH))
-        val mainModel: MainModel = MainDummy(MainTests.mainDataMutable)
+        val mainDataMutable = ObservableSource(MainData(screen = Screen.SPLASH))
+        val mainModel: MainModel = MainDummy(MainTests.mainDataMutable.observable)
         { mainAction ->
             when (mainAction)
             {
-                is MainActionChangeScreen -> MainTests.mainDataMutable.value =
-                    MainData(screen = mainAction.screen)
+                is MainActionChangeScreen ->
+                    MainTests.mainDataMutable.value = MainData(screen = mainAction.screen)
             }
         }
 
