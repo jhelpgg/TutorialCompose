@@ -1,11 +1,17 @@
-package fr.jhelp.model.tools
+package fr.jhelp.tool.tasks
 
-import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Runnable
+import kotlin.coroutines.CoroutineContext
 
+/**
+ * Dispatcher that execute the task immediately
+ */
 object ImmediateDispatcher : CoroutineDispatcher()
 {
+    /**
+     * Dispatch the task immediately
+     */
     override fun dispatch(context: CoroutineContext, block: Runnable)
     {
         block.run()

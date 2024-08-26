@@ -2,7 +2,7 @@ package fr.jhelp.model.implementation
 
 import fr.jhelp.model.action.main.MainActionChangeScreen
 import fr.jhelp.model.data.Screen
-import fr.jhelp.model.tools.ImmediateDispatcher
+import fr.jhelp.tool.tasks.ImmediateDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.setMain
 import org.junit.Assert
@@ -15,8 +15,8 @@ class MainTests
     {
         Dispatchers.setMain(ImmediateDispatcher)
         val mainModel = MainImplementation()
-        Assert.assertEquals(Screen.SPLASH, mainModel.data.value.screen)
+        Assert.assertEquals(Screen.SPLASH, mainModel.data.composeState.value.screen)
         mainModel.action(MainActionChangeScreen(screen = Screen.HOME))
-        Assert.assertEquals(Screen.HOME, mainModel.data.value.screen)
+        Assert.assertEquals(Screen.HOME, mainModel.data.composeState.value.screen)
     }
 }

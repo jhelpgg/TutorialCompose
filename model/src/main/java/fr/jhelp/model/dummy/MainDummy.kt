@@ -1,17 +1,17 @@
 package fr.jhelp.model.dummy
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import fr.jhelp.model.action.main.MainAction
 import fr.jhelp.model.data.MainData
 import fr.jhelp.model.shared.MainModel
+import fr.jhelp.tool.tasks.observable.Observable
+import fr.jhelp.tool.tasks.observable.ObservableSource
 
-class MainDummy(mainDataSource:State<MainData>, private val onAction: (MainAction)->Unit={}) : MainModel
+class MainDummy(mainDataSource: Observable<MainData>, private val onAction: (MainAction) -> Unit = {}) : MainModel
 {
-    constructor(mainData:MainData, action:(MainAction)->Unit={}) :
-            this(mutableStateOf(mainData), action)
+    constructor(mainData: MainData, action: (MainAction) -> Unit = {}) :
+            this(ObservableSource(mainData).observable, action)
 
-    override val data: State<MainData> = mainDataSource
+    override val data: Observable<MainData> = mainDataSource
 
     override fun action(action: MainAction)
     {
