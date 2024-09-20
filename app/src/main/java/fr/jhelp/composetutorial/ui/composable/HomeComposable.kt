@@ -22,7 +22,7 @@ class HomeComposable
     @Composable
     fun Show(modifier: Modifier = Modifier)
     {
-        val homeData by this.homeModel.data
+        val homeData by this.homeModel.data.composeState
 
         ConstraintLayout(modifier = modifier.testTag(HOME_CONTAINER))
         {

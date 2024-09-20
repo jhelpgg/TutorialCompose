@@ -35,7 +35,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.runtime)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.espresso.core)
 }
