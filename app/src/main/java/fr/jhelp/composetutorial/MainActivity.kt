@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.ui.Modifier
 import fr.jhelp.composetutorial.ui.composable.MainComposable
+import fr.jhelp.composetutorial.ui.composable.TabExempleComposable
 import fr.jhelp.composetutorial.ui.theme.ComposeTutorialTheme
 
 class MainActivity : ComponentActivity()
@@ -19,7 +20,9 @@ class MainActivity : ComponentActivity()
         enableEdgeToEdge()
         setContent {
             ComposeTutorialTheme {
-                this@MainActivity.mainComposable.Show(Modifier.fillMaxSize())
+
+                TabExempleComposable().Show(Modifier.fillMaxSize())
+            //this@MainActivity.mainComposable.Show(Modifier.fillMaxSize())
             }
         }
     }
